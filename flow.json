@@ -1,0 +1,578 @@
+[
+    {
+        "id": "5a742800.caa7d8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a468e61a.ea9c78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqtt-dashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "bdf8a0f.0df7d6",
+        "type": "telegram bot",
+        "botname": "group_9_bot",
+        "usernames": "",
+        "chatids": "1592976113",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "a5814034.14b83",
+        "type": "telegram bot",
+        "botname": "group_9_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "814082b8.81edf",
+        "type": "firebase config",
+        "firebaseurl": "iot-anti-thief-default-rtdb",
+        "loginType": "email"
+    },
+    {
+        "id": "93ac917a.413a3",
+        "type": "mqtt out",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "topic": "elcis1210_receive",
+        "qos": "",
+        "retain": "",
+        "broker": "a468e61a.ea9c78",
+        "x": 890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "99819ea1.19048",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/lightOff",
+        "command": "/lightOff",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "9eccb32a.24a6d"
+            ],
+            [
+                "9eccb32a.24a6d"
+            ]
+        ]
+    },
+    {
+        "id": "9eccb32a.24a6d",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn off LEDs",
+        "func": "msg.payload = 6;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 420,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "538300aa.48da4",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/lightOn",
+        "command": "/lightOn",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "8416ae93.2ee09"
+            ],
+            [
+                "8416ae93.2ee09"
+            ]
+        ]
+    },
+    {
+        "id": "8416ae93.2ee09",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn on LEDs",
+        "func": "msg.payload = 5;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "9a7be428.0ea758",
+        "type": "mqtt in",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "topic": "elcis1210_send",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "a468e61a.ea9c78",
+        "x": 100,
+        "y": 740,
+        "wires": [
+            [
+                "bfcf09aa.0a5d08",
+                "a952fed7.f663e"
+            ]
+        ]
+    },
+    {
+        "id": "4f43ee92.ee938",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/buzzerOff",
+        "command": "/buzzerOff",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "c90c03.e51614"
+            ],
+            [
+                "c90c03.e51614"
+            ]
+        ]
+    },
+    {
+        "id": "c90c03.e51614",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn off buzzer",
+        "func": "msg.payload = 4;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "834db59a.0b93d8",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/buzzerOn",
+        "command": "/buzzerOn",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "70d54fe7.3299e"
+            ],
+            [
+                "70d54fe7.3299e"
+            ]
+        ]
+    },
+    {
+        "id": "70d54fe7.3299e",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn on buzzer",
+        "func": "msg.payload = 3;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "e0422acf.5b7808",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/powerOff",
+        "command": "/powerOff",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "18959b46.0750c5"
+            ],
+            [
+                "18959b46.0750c5"
+            ]
+        ]
+    },
+    {
+        "id": "18959b46.0750c5",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn off power",
+        "func": "msg.payload = 2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "5625a95e.8ea3c8",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/powerOn",
+        "command": "/powerOn",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "195c62b0.bf938d"
+            ],
+            [
+                "195c62b0.bf938d"
+            ]
+        ]
+    },
+    {
+        "id": "195c62b0.bf938d",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Turn on power",
+        "func": "msg.payload = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 120,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "bfcf09aa.0a5d08",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "createMessage",
+        "func": "message = msg.payload;\nmsg.payload = {};\nmsg.payload.type = 'message';\nmsg.payload.content = message;\nmsg.payload.chatId = 1592976113;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 300,
+        "y": 760,
+        "wires": [
+            [
+                "bec30fa3.69f0d"
+            ]
+        ]
+    },
+    {
+        "id": "bec30fa3.69f0d",
+        "type": "telegram sender",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "bot": "bdf8a0f.0df7d6",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a952fed7.f663e",
+        "type": "debug",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "33548528.d5987a",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/checkPower",
+        "command": "/checkPower",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "a013ac1a.7f766"
+            ],
+            [
+                "a013ac1a.7f766"
+            ]
+        ]
+    },
+    {
+        "id": "a013ac1a.7f766",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Check power",
+        "func": "msg.payload = 7;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 480,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "ffbc08d9.f714b8",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/checkBuzzer",
+        "command": "/checkBuzzer",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "89f6adad.28565"
+            ],
+            [
+                "89f6adad.28565"
+            ]
+        ]
+    },
+    {
+        "id": "89f6adad.28565",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Check buzzer",
+        "func": "msg.payload = 8;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 540,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "c74ecbcc.db9028",
+        "type": "telegram command",
+        "z": "5a742800.caa7d8",
+        "name": "/checkLight",
+        "command": "/checkLight",
+        "bot": "bdf8a0f.0df7d6",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "39ddb0ad.baccc"
+            ],
+            [
+                "39ddb0ad.baccc"
+            ]
+        ]
+    },
+    {
+        "id": "39ddb0ad.baccc",
+        "type": "function",
+        "z": "5a742800.caa7d8",
+        "name": "Check light",
+        "func": "msg.payload = 9;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 600,
+        "wires": [
+            [
+                "93ac917a.413a3"
+            ]
+        ]
+    },
+    {
+        "id": "1eea3ea6.2e8aa1",
+        "type": "firebase modify",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "firebaseconfig": "814082b8.81edf",
+        "childpath": "Messages/13321231/datetime",
+        "method": "update",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 880,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3412ce2a.786a02",
+        "type": "inject",
+        "z": "5a742800.caa7d8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 290,
+        "y": 900,
+        "wires": [
+            [
+                "1eea3ea6.2e8aa1"
+            ]
+        ]
+    }
+]
