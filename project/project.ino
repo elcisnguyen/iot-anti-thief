@@ -9,7 +9,7 @@ const int relay = D2;
 const int n = 2;
 const int trig[n] = {D5, D7};
 const int echo[n] = {D6, D8};
-const int WAITING_TIME = 2;
+const int WAITING_TIME = 5;
 const int GUEST_DISTANCE = 200;
 const int THIEF_DISTANCE = 200;
 
@@ -124,7 +124,7 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("elcis1210_send", "hello world");
+      client.publish("elcis1210_send", "Send /help to get help");
       // ... and resubscribe
       client.subscribe("elcis1210_receive");
     } else {
@@ -172,11 +172,12 @@ float* getDistance(){
     distanceCm[i] = duration * 0.034 / 2;
   }
 
-  Serial.print("Sensor 0: ");
-  Serial.print(distanceCm[0]);
-  Serial.print("Sensor 1: ");
-  Serial.print(distanceCm[1]);
+//  Serial.print("Sensor 0: ");
+//  Serial.print(distanceCm[0]);
+//  Serial.print("Sensor 1: ");
+//  Serial.print(distanceCm[1]);
   Serial.println("---------------------");
+  delay(100); //DO NOT TOUCH THIS LINE!!! OR 2 SENSORS BOTH THEIF WARNING
   return distanceCm;
 }
 
@@ -215,7 +216,12 @@ void loop() {
     float* distance = getDistance();
     thief_warning(distance[0]);
     guest_warning(distance[1]);
-    
+//    Serial.print("Dis 0: ");
+//  Serial.print(distance[0]);
+//  Serial.print("Dis 1: ");
+//  Serial.print(distance[1]);
+
+  
     if (turnOnBuzzer)
       digitalWrite(buzzer, HIGH);
     else
@@ -247,5 +253,5 @@ void loop() {
 //    client.publish("outTopic", msg);
 //  }
   //------------------------------------------------------------
-  delay(100);
+  //delay(100);
 }
